@@ -14,7 +14,7 @@ export default function RecipeDetails() {
 
     return (
         <div className="max-w-6xl mx-auto p-6">
-            {loading && <p>Loading...</p>}
+            {loading && <p className="flex items-center justify-center font-medium text-lg text-blue-400">loading...</p>}
             {error && <p>Error: {error}</p>}
 
             {recipe && (

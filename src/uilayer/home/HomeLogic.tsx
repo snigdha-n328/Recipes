@@ -70,12 +70,16 @@ export default function HomeLogic() {
 
     const handleFavourites = (recipe: Recipe) => {
         const exists = favourites.some(fav => fav.idMeal === recipe.idMeal);
+        let updatedFavourites;
 
         if (exists) {
-            setFavourites(favourites.filter(fav => fav.idMeal !== recipe.idMeal));
+            updatedFavourites = favourites.filter(fav => fav.idMeal !== recipe.idMeal);
         } else {
-            setFavourites([...favourites, recipe]);
+            updatedFavourites = [...favourites, recipe];
         }
+
+        setFavourites(updatedFavourites);
+        localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
     }
 
     return {

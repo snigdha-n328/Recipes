@@ -3,12 +3,12 @@ import RecipeCard from "../components/RecipeCard";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-    const { loading, error, handleSearch, filteredRecipes, categories, handleCategoryChange, handleFavourites } = HomeLogic();
+    const { loading, error, handleSearch, filteredRecipes, categories, handleCategoryChange, handleFavourites, favourites } = HomeLogic();
     const navigate = useNavigate();
 
     return (
         <div>
-            <div className="flex justify-between p-2 m-2">
+            <div className="flex items-center justify-between p-2 m-2">
                 <p>Total Recipes: {filteredRecipes.length}</p>
                 <div className="flex flex-end gap-4">
                     <select className="border border-gray-300 rounded-md px-2 py-1" onChange={(e) => { handleCategoryChange(e.target.value) }}>
@@ -25,7 +25,7 @@ export default function Home() {
                     />
                 </div>
             </div>
-            {loading && <p>loading...</p>}
+            {loading && <p className="flex items-center justify-center font-medium text-lg text-blue-400">loading...</p>}
             {error && <p>Error: {error}</p>}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
                 {filteredRecipes.map((recipe: any) => (
@@ -33,7 +33,8 @@ export default function Home() {
                         <RecipeCard
                             recipe={recipe}
                             onClick={() => { navigate(`/recipe/${recipe.idMeal}`) }}
-                            isFavourite={() => {handleFavourites(recipe)}}
+                            isFavourite={favourites.some((fav) => fav.idMeal === recipe.idMeal)}
+                            onFavourite={() => {handleFavourites(recipe)}}
                         />
                     </div>
                 ))}
