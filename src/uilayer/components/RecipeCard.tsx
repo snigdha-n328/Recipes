@@ -13,7 +13,7 @@ export default function RecipeCard({ recipe, onClick, isFavourite, onFavourite }
             <img src={recipe.strMealThumb} className="h-30 w-30" />
             <h3 className="font-bold italic">{recipe.strMeal}</h3>
             <p>Category: {recipe.strCategory}</p>
-            <p>Area: {recipe.strArea}</p>
+            <p>Area: {recipe.strArea ? (recipe.strArea) : "Unknown"}</p>
         </div>
     )
 }

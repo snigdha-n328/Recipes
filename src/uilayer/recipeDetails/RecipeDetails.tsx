@@ -49,7 +49,7 @@ export default function RecipeDetails() {
 
                                     {recipe.strArea && (
                                         <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">
-                                            🌍 {recipe.strArea}
+                                            🌍 {recipe.strArea ? (recipe.strArea) : "Unknown"}
                                         </span>
                                     )}
                                 </div>
