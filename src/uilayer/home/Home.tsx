@@ -3,7 +3,7 @@ import RecipeCard from "../components/RecipeCard";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-    const { loading, error, handleSearch, filteredRecipes, categories, handleCategoryChange, handleFavourites, favourites } = HomeLogic();
+    const { loading, error, handleSearch, filteredRecipes, categories, handleCategoryChange, handleFavourites, favourites, handleAddToCart } = HomeLogic();
     const navigate = useNavigate();
 
     return (
@@ -35,6 +35,7 @@ export default function Home() {
                             onClick={() => { navigate(`/recipe/${recipe.idMeal}`) }}
                             isFavourite={favourites.some((fav) => fav.idMeal === recipe.idMeal)}
                             onFavourite={() => {handleFavourites(recipe)}}
+                            onAddToCart={() => handleAddToCart(recipe)}
                         />
                     </div>
                 ))}

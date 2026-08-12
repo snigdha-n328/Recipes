@@ -12,7 +12,7 @@ export default function Navbar() {
                 />
 
                 <h1 className="text-2xl font-bold text-orange-600">
-                    Recipe Explorer
+                    Recipe2Plate  
                 </h1>
             </div>
 
@@ -39,7 +39,7 @@ export default function Navbar() {
                         } `
                     }
                 >
-                    Favourites
+                    WishList
                 </NavLink>
             </div>
         </nav>

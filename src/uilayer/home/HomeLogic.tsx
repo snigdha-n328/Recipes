@@ -5,6 +5,7 @@ import type { Recipe } from '../../types/Recipe';
 export default function HomeLogic() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [favourites, setFavourites] = useState<Recipe[]>([]);
+    const [cart, setCart] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
@@ -16,6 +17,12 @@ export default function HomeLogic() {
         if (favouritesList) {
             setFavourites(JSON.parse(favouritesList));
         }
+
+        const cartItems = localStorage.getItem("cartItems");
+        if (cartItems) {
+            setCart(JSON.parse(cartItems));
+        }
+
         fetchData();
     }, []);
 
@@ -76,6 +83,16 @@ export default function HomeLogic() {
         localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
     }
 
+    const handleAddToCart = (recipe: Recipe) => {
+        const exists = cart.some(item => item === recipe.idMeal);
+
+        if (!exists) {
+            const updatedCart = [...cart, recipe.idMeal];
+            setCart(updatedCart);
+            localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        }
+    }
+
     return {
         loading,
         error,
@@ -84,6 +101,8 @@ export default function HomeLogic() {
         categories,
         handleCategoryChange,
         favourites,
-        handleFavourites
+        handleFavourites,
+        cart,
+        handleAddToCart
     };
 }
