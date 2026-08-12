@@ -11,7 +11,14 @@ export default function FavouritesLogic() {
         }
     }, []);
 
+    const handleFavourites = (recipe: Recipe) => {
+        let updatedFavourties = favourites.filter((favourite) => favourite.idMeal !== recipe.idMeal)
+        setFavourites(updatedFavourties);
+        localStorage.setItem("favourites", JSON.stringify(updatedFavourties));
+    }
+
     return {
-        favourites
+        favourites,
+        handleFavourites
     }
 }

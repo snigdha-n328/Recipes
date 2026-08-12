@@ -39,7 +39,7 @@ export default function Navbar() {
                         } `
                     }
                 >
-                    WishList
+                    Wishlist
                 </NavLink>
             </div>
         </nav>

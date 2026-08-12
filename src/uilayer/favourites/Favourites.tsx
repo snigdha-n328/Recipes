@@ -3,7 +3,7 @@ import RecipeCard from "../components/RecipeCard";
 import { useNavigate } from "react-router-dom";
 
 export default function Favourites() {
-    const { favourites } = FavouritesLogic();
+    const { favourites, handleFavourites } = FavouritesLogic();
     const navigate = useNavigate();
 
     return (
@@ -21,7 +21,8 @@ export default function Favourites() {
                                 recipe={recipe}
                                 onClick={() => { navigate(`/recipe/${recipe.idMeal}`) }}
                                 isFavourite={true}
-                                onFavourite={() => { }}
+                                onFavourite={() => { handleFavourites(recipe) }}
+                                onAddToCart={() => { }}
                             />
                         </div>
                     ))
