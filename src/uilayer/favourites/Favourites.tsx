@@ -15,12 +15,13 @@ export default function Favourites() {
                 {favourites.length === 0 ? (
                     <p>❤️ No favourite recipes yet.</p>
                 ) : (
-                    favourites.map((recipe: any) => (
+                    favourites.map((recipe) => (
                         <div key={recipe.idMeal} className="cursor-pointer hover:shadow-lg transition duration-300">
                             <RecipeCard
                                 recipe={recipe}
                                 onClick={() => { navigate(`/recipe/${recipe.idMeal}`) }}
-                                isFavourite = {true}
+                                isFavourite={true}
+                                onFavourite={() => { }}
                             />
                         </div>
                     ))

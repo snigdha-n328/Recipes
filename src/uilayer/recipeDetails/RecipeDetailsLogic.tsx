@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchRecipeById } from "../../dslayer/recipeData";
+import type { Recipe, Ingredient } from "../../types/Recipe";
 
 export default function RecipeDetailsLogic() {
-    const [recipe, setRecipe] = useState<Record<string, string | null>>({});
+    const [recipe, setRecipe] = useState<Recipe | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
-        fetchRecipeDetails(Number(id));
+        if (id) {
+            fetchRecipeDetails(Number(id));
+        }
     }, [id]);
 
     const fetchRecipeDetails = async (id: number) => {
@@ -27,12 +30,12 @@ export default function RecipeDetailsLogic() {
         }
     }
 
-    const ingredients = [];
+    const ingredients : Ingredient[] = [];
 
     if (recipe) {
         for (let i = 1; i <= 20; i++) {
-            const ingredient = recipe[`strIngredient${i}`];
-            const measure = recipe[`strMeasure${i}`];
+            const ingredient = recipe[`strIngredient${i}` as keyof Recipe];
+            const measure = recipe[`strMeasure${i}` as keyof Recipe];
 
             if (ingredient?.trim()) {
                 ingredients.push({ ingredient, measure });

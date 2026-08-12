@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchRecipes } from '../../dslayer/recipeData';
-
-type Recipe = {
-    idMeal: string;
-    strMeal: string;
-    strCategory: string;
-    [key: string]: any;
-}
+import type { Recipe } from '../../types/Recipe';
 
 export default function HomeLogic() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -44,17 +38,17 @@ export default function HomeLogic() {
         }
     }
 
-    const categories = Array.from(new Set(recipes.map((recipe: Recipe) => recipe.strCategory)));
+    const categories = Array.from(new Set(recipes.map((recipe) => recipe.strCategory)));
 
     const applyFilters = () => {
         let result: Recipe[] = recipes;
 
         if (searchTerm.trim() !== "") {
-            result = result.filter((recipe: Recipe) => recipe.strMeal.toLowerCase().includes(searchTerm.trim().toLowerCase()))
+            result = result.filter((recipe) => recipe.strMeal.toLowerCase().includes(searchTerm.trim().toLowerCase()))
         }
 
         if (selectedCategory.trim() !== "") {
-            result = result.filter((recipe: Recipe) => recipe.strCategory.toLowerCase() === selectedCategory.trim().toLowerCase())
+            result = result.filter((recipe) => recipe.strCategory.toLowerCase() === selectedCategory.trim().toLowerCase())
         }
 
         setFilteredRecipes(result);
@@ -70,7 +64,7 @@ export default function HomeLogic() {
 
     const handleFavourites = (recipe: Recipe) => {
         const exists = favourites.some(fav => fav.idMeal === recipe.idMeal);
-        let updatedFavourites;
+        let updatedFavourites: Recipe[];
 
         if (exists) {
             updatedFavourites = favourites.filter(fav => fav.idMeal !== recipe.idMeal);

@@ -1,15 +1,8 @@
 import RecipeDetailsLogic from "./RecipeDetailsLogic";
 import { useNavigate } from "react-router-dom";
 
-interface RecipeDetailsProps {
-    recipe: any;
-    loading: boolean;
-    error: string | null;
-    ingredients: { ingredient: string; measure: string | null }[];
-}
-
 export default function RecipeDetails() {
-    const { recipe, loading, error, ingredients }: RecipeDetailsProps = RecipeDetailsLogic();
+    const { recipe, loading, error, ingredients } = RecipeDetailsLogic();
     const navigate = useNavigate();
 
     return (
@@ -48,8 +41,8 @@ export default function RecipeDetails() {
                                     </span>
 
                                     {recipe.strArea && (
-                                        <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">
-                                            🌍 {recipe.strArea ? (recipe.strArea) : "Unknown"}
+                                        <span>
+                                            🌍 {recipe.strArea || "Unknown"}
                                         </span>
                                     )}
                                 </div>
