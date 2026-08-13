@@ -12,7 +12,7 @@ export default function Navbar() {
                 />
 
                 <h1 className="text-2xl font-bold text-orange-600">
-                    Recipe2Plate  
+                    Recipe2Plate
                 </h1>
             </div>
 
@@ -20,26 +20,23 @@ export default function Navbar() {
             <div className="flex items-center gap-8">
                 <NavLink
                     to="/"
-                    className={({ isActive }) =>
-                        `text-lg font-medium transition ${isActive
-                            ? "text-orange-600"
-                            : "text-gray-700 hover:text-orange-600"
-                        } `
-                    }
+                    className={({ isActive }) => `text-lg font-medium transition ${isActive ? "text-orange-600" : "text-gray-700 hover:text-orange-600" } `}
                 >
                     Home
                 </NavLink>
 
                 <NavLink
                     to="/favourites"
-                    className={({ isActive }) =>
-                        `text-lg font-medium transition ${isActive
-                            ? "text-orange-600"
-                            : "text-gray-700 hover:text-orange-600"
-                        } `
-                    }
+                    className={({ isActive }) => `text-lg font-medium transition ${isActive ? "text-orange-600" : "text-gray-700 hover:text-orange-600" } `}
                 >
                     Wishlist
+                </NavLink>
+
+                <NavLink
+                    to="/myCart"
+                    className={({ isActive }) => `text-lg font-medium transition ${isActive ? "text-orange-600" : "text-gray-700 hover:text-orange-600" } `}
+                >
+                    My Cart
                 </NavLink>
             </div>
         </nav>

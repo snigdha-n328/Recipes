@@ -36,6 +36,7 @@ export default function Home() {
                             isFavourite={favourites.some((fav) => fav.idMeal === recipe.idMeal)}
                             onFavourite={() => {handleFavourites(recipe)}}
                             onAddToCart={() => handleAddToCart(recipe)}
+                            isFromCart= {false}
                         />
                     </div>
                 ))}

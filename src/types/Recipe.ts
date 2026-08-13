@@ -54,3 +54,8 @@ export type Ingredient = {
     ingredient: string;
     measure: string | null;
 };
+
+export type CartItem = {
+    id: string;
+    quantity: number;
+}

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { fetchRecipes } from '../../dslayer/recipeData';
-import type { Recipe } from '../../types/Recipe';
+import type { Recipe, CartItem } from '../../types/Recipe';
 
 export default function HomeLogic() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [favourites, setFavourites] = useState<Recipe[]>([]);
-    const [cart, setCart] = useState<string[]>([]);
+    const [cart, setCart] = useState<CartItem[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
@@ -84,13 +84,17 @@ export default function HomeLogic() {
     }
 
     const handleAddToCart = (recipe: Recipe) => {
-        const exists = cart.some(item => item === recipe.idMeal);
+        const exists = cart.some(item => item.id === recipe.idMeal);
+        let updatedCart: CartItem[];
 
         if (!exists) {
-            const updatedCart = [...cart, recipe.idMeal];
-            setCart(updatedCart);
-            localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+            updatedCart = [...cart, { id: recipe.idMeal, quantity: 1 }];
         }
+        else {
+            updatedCart = cart.filter((item) => item.id !== recipe.idMeal);
+        }
+        setCart(updatedCart);
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
     }
 
     return {

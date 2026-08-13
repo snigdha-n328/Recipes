@@ -23,6 +23,7 @@ export default function Favourites() {
                                 isFavourite={true}
                                 onFavourite={() => { handleFavourites(recipe) }}
                                 onAddToCart={() => { }}
+                                isFromCart={false}
                             />
                         </div>
                     ))
