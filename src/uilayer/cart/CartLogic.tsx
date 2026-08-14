@@ -49,6 +49,24 @@ export default function CartLogic() {
         setCart(updatedCart);
         setRecipes((prev) => prev.filter((item) => item.idMeal !== recipe.idMeal));
         localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        window.dispatchEvent(new Event("cartUpdated"));
+    };
+
+    const handleQuantityChange = (recipeId: string, change: number) => {
+        const cartItem = cart.find((item) => item.id === recipeId);
+
+        if (!cartItem) return;
+
+        const newQuantity = Math.max(1, cartItem.quantity + change);
+        const updatedCart = cart.map((item) =>
+            item.id === recipeId
+                ? { ...item, quantity: newQuantity }
+                : item
+        );
+
+        setCart(updatedCart);
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        window.dispatchEvent(new Event("cartUpdated"));
     };
 
     return {
@@ -56,6 +74,7 @@ export default function CartLogic() {
         error,
         recipes,
         handleCart,
-        cart
+        cart,
+        handleQuantityChange
     };
 }

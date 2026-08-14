@@ -3,7 +3,7 @@ import RecipeCard from "../components/RecipeCard";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-    const { loading, error, recipes, handleCart, cart } = CartLogic();
+    const { loading, error, recipes, handleCart, cart, handleQuantityChange } = CartLogic();
     const navigate = useNavigate();
 
     return (
@@ -30,6 +30,9 @@ export default function Cart() {
                                     onAddToCart={() => handleCart(recipe)}
                                     isFromCart={true}
                                     quantity={cartItem?.quantity || 0}
+                                    onDecreaseQuantity={() => handleQuantityChange(recipe.idMeal, -1)}
+                                    onIncreaseQuantity={() => handleQuantityChange(recipe.idMeal, +1)}
+                                    isAddedToCart={true}
                                 />
                             </div>
                         )

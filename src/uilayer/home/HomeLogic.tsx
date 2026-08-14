@@ -95,6 +95,7 @@ export default function HomeLogic() {
         }
         setCart(updatedCart);
         localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        window.dispatchEvent(new Event("cartUpdated"));
     }
 
     return {
