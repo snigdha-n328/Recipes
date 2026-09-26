@@ -8,10 +8,10 @@ type RecipeCardProps = {
     onFavourite: () => void;
     onAddToCart: () => void;
     isFromCart: boolean;
-    quantity: number;
-    onIncreaseQuantity: () => void;
-    onDecreaseQuantity: () => void;
-    isAddedToCart: boolean;
+    quantity?: number;
+    onIncreaseQuantity?: () => void;
+    onDecreaseQuantity?: () => void;
+    isAddedToCart?: boolean;
 };
 
 export default function RecipeCard({ recipe, onClick, isFavourite, onFavourite, onAddToCart, isFromCart, quantity, onIncreaseQuantity, onDecreaseQuantity, isAddedToCart }: RecipeCardProps) {
