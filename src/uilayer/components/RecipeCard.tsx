@@ -60,7 +60,7 @@ export default function RecipeCard({ recipe, onClick, isFavourite, onFavourite, 
                             className="bg-gradient-to-r from-white to-slate-50 shadow-xs rounded-full px-2.5 pb-1 items-center border border-slate-200"
                             onClick={(e) => {
                                 e.stopPropagation();
-                                onDecreaseQuantity()
+                                onDecreaseQuantity?.()
                             }}
                         >-</button>
                         <p>Quantity: <span className="text-red-500">{quantity}</span></p>
@@ -68,7 +68,7 @@ export default function RecipeCard({ recipe, onClick, isFavourite, onFavourite, 
                             className="bg-gradient-to-r from-white to-slate-50 shadow-xs rounded-full px-2 pb-1 items-center border border-slate-200"
                             onClick={(e) => {
                                 e.stopPropagation();
-                                onIncreaseQuantity()
+                                onIncreaseQuantity?.()
                             }}
                         >+</button>
                     </div>
